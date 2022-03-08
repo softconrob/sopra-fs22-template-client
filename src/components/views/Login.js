@@ -61,7 +61,8 @@ const Login = props => {
   const doLogin = async () => {
     try {
       const requestBody = JSON.stringify({username, password});
-      const response = await api.post('/users', requestBody);
+      console.log(requestBody);
+      const response = await api.put('/users/login', requestBody);
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
@@ -75,6 +76,7 @@ const Login = props => {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
   };
+
 
   return (
     <BaseContainer>
