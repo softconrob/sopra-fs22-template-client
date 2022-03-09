@@ -39,7 +39,14 @@ const Profile = () => {
         history.push('/game');}
 
     const goToEdit = async () => {
-        history.push('/edit');}
+        if (localStorage.getItem('id') === id) {
+            history.push('/edit');
+        } else {
+            alert("Can only Edit your own profile");
+        }
+    }
+
+
 
 
     // the effect hook can be used to react to change in your component.
