@@ -89,9 +89,9 @@ const Profile = () => {
         content = (
             <div className="game">
                 <ul className="game user-list">
-                    {user.map(user => (
+
                         <Player user={user} key={user.id}/>
-                    ))}
+
                 </ul>
 
 
