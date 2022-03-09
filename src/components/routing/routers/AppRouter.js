@@ -31,7 +31,7 @@ const AppRouter = () => {
         <Route exact path="/">
           <Redirect to="/game"/>
         </Route>
-        <Route exact path={`/edit`}> <Edit />}> </Route>
+        <Route exact path={`/edit/:id`}> <Edit />}> </Route>
       </Switch>
     </BrowserRouter>
   );

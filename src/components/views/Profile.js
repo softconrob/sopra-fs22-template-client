@@ -40,11 +40,12 @@ const Profile = () => {
 
     const goToEdit = async () => {
         if (localStorage.getItem('id') === id) {
-            history.push('/edit');
+            history.push(`/edit/`+id);
         } else {
             alert("Can only Edit your own profile");
         }
     }
+
 
 
 

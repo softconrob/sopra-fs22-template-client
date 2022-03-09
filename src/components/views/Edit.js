@@ -8,6 +8,13 @@ import PropTypes from "prop-types";
 import "styles/views/Profile.scss";
 import User from "../../models/User";
 
+// if (localStorage.getItem('id') === id) {
+//             history.push(`/edit/`+id);
+//         } else {
+//             alert("Can only Edit your own profile");
+// add so that you can only edit own profile
+// const {id} = useParams();
+
 const Player = ({user}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
@@ -103,7 +110,7 @@ const Edit = () => {
                     width="100%"
                     onClick={() => backToGame()}
                 >
-                    Back
+                    Back to all User Overview
                 </Button>
             </div>
         );
