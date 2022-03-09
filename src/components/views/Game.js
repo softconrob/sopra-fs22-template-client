@@ -86,14 +86,14 @@ const Game = () => {
 
   let content = <Spinner/>;
 
-  if (users) {
-    content = (
-      <div className="game">
-        <ul className="game user-list">
-          {users.map(user => (
-            <Player user={user} key={user.id}/>
-          ))}
-        </ul>
+    if (users) {
+        content = (
+            <div className="game">
+                <ul className="game user-list">
+                    {users.map(user => (
+                        <Player user={user} key={user.id}/>
+                    ))}
+                </ul>
         <Button
           width="100%"
           onClick={() => logout()}
