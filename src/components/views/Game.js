@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
+import User from "../../models/User";
 
 const Player = ({user}) => (
   <div className="player container">
@@ -30,9 +31,20 @@ const Game = () => {
   // more information can be found under https://reactjs.org/docs/hooks-state.html
   const [users, setUsers] = useState(null);
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    history.push('/login');
+  const logout = async () => {
+      try{
+          const requestBody = JSON.stringify({token: localStorage.getItem('token'),});
+          await api.put('/users/logout', requestBody);
+          //const user = new User(response.data);
+
+      }
+
+      catch (error) {
+          alert(`Something went wrong during the logout: \n${handleError(error)}`);
+      }
+      localStorage.removeItem('token');
+      history.push('/login');
+
   }
 
   // the effect hook can be used to react to change in your component.
