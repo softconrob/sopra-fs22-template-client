@@ -8,12 +8,12 @@ import PropTypes from "prop-types";
 import "styles/views/Profile.scss";
 import User from "../../models/User";
 
-const Player = ({user}) => (
+const Player = ({user}, {online_status = user.logged_in.toString()}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
-        <div className="player status">{user.logged_in}</div>
-        <div className="player creation date">{user.creation_date}</div>
-        <div className="player username">{user.birthday}</div>
+        <div className="player status">ONLINE: {online_status}</div>
+        <div className="player creation date">Creation Date: {user.creation_date}</div>
+        <div className="player username">Birthday: {user.birthday}</div>
     </div>
 );
 
