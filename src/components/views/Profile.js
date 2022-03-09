@@ -25,14 +25,15 @@ Player.propTypes = {
 const Profile = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
-    const {id} = useParams();
+
 
     // define a state variable (using the state hook).
     // if this variable changes, the component will re-render, but the variable will
     // keep its value throughout render cycles.
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
-    const [users, setUsers] = useState(null);
+    const [user, setUser] = useState(null);
+    const {id} = useParams();
 
     const backToGame = async () => {
         history.push('/game');}
@@ -46,10 +47,11 @@ const Profile = () => {
     // this can be achieved by leaving the second argument an empty array.
     // for more information on the effect hook, please see https://reactjs.org/docs/hooks-effect.html
     useEffect(() => {
+
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                const response = await api.get('/users');
+                const response = await api.get('/users/'+id);
                 //const response = await api.get(`/users/${this.props.match.params.id}`);
 
                 // delays continuous execution of an async operation for 1 second.
@@ -58,7 +60,7 @@ const Profile = () => {
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
                 // Get the returned users and update the state.
-                setUsers(response.data);
+                setUser(response.data);
 
                 // This is just some data for you to see what is available.
                 // Feel free to remove it.
@@ -83,11 +85,11 @@ const Profile = () => {
 
 
 
-    if (users) {
+    if (user) {
         content = (
             <div className="game">
                 <ul className="game user-list">
-                    {users.map(user => (
+                    {user.map(user => (
                         <Player user={user} key={user.id}/>
                     ))}
                 </ul>
@@ -109,6 +111,7 @@ const Profile = () => {
         );
     }
 
+
     return (
         <BaseContainer className="game container">
             <h2>Happy Coding!</h2>
@@ -123,3 +126,4 @@ const Profile = () => {
 
 
 export default Profile;
+

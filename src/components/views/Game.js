@@ -33,11 +33,7 @@ const Game = () => {
   const [users, setUsers] = useState(null);
 
   const logout = async () => {
-      try{
-          const requestBody = JSON.stringify({token: localStorage.getItem('token'),});
-          await api.put('/users/logout', requestBody);
-          //const user = new User(response.data);
-
+      try{ const response = api.put('/users/'+localStorage.getItem("id")+"/logout");
       }
 
       catch (error) {
