@@ -62,7 +62,7 @@ const Edit = () => {
                 await api.put('/users/'+id, requestBody);
 
                 // Update successfully worked --> navigate to the route /profile
-                history.push(`profile/`+id);
+                history.push(`/game/profile/`+id);
             } catch (error) {
                 alert(`Something went wrong during the Username update: \n${handleError(error)}`);
             }
@@ -77,7 +77,7 @@ const Edit = () => {
                 await api.put('/users/'+id, requestBody);
 
                 // Update successfully worked --> navigate to the route /profile
-                history.push(`profile/`+id);
+                history.push(`/game/profile/`+id);
             } catch (error) {
                 alert(`Something went wrong during the Birthday update: \n${handleError(error)}`);
             }
