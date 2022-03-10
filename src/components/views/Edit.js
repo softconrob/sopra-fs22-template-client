@@ -55,10 +55,65 @@ const Edit = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
 
+    const doFetchUsername = async () => {
+        try {
+            const response = await api.get('/users/'+id);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            setUser(response.data);
+            setUsername(user.username);
+            setBirthday(user.birthday);
+            const userToSend = username;
+            const userBirthday = birthday;
+            return userToSend, userBirthday;
+
+        } catch (error) {
+            alert(`Something went wrong during the Birthday update: \n${handleError(error)}`);
+        }
+
+    };
+
+    // const doFetchBirthday = async () => {
+    //     try {
+    //         const response = await api.get('/users/'+id);
+    //         await new Promise(resolve => setTimeout(resolve, 1000));
+    //         setUser(response.data);
+    //         setUsername(user.username);
+    //         setBirthday(user.birthday);
+    //         const userToSend = birthday;
+    //         return userToSend;
+    //
+    //     } catch (error) {
+    //         alert(`Something went wrong during the Birthday update: \n${handleError(error)}`);
+    //     }
+    //
+    // };
+
+
+    useEffect(() => {
+        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+        async function fetchData() {
+
+                const response = await api.get('/users/'+id);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                setUser(response.data);
+                setUsername(user.username);
+                setBirthday(user.birthday);
+                const userToSend = username;
+                const userBirthday = birthday;
+
+
+        }
+        fetchData();
+    }, []);
+
     const doUpdateUsername = async () => {
+
+
+        //const userBirthday = await doFetchBirthday();
+
         if (localStorage.getItem('id') === id) {
             try {
-                const requestBody = JSON.stringify({id, username});
+                const requestBody = JSON.stringify({id, username, birthday});
                 await api.put('/users/'+id, requestBody);
 
                 // Update successfully worked --> navigate to the route /profile
@@ -72,14 +127,11 @@ const Edit = () => {
 
     const doUpdateBirthday = async () => {
 
+        //const userToSend = await doFetchUsername();
+
         if (localStorage.getItem('id') === id) {
             try {
-                const response = await api.get('/users/'+id);
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                setUser(response.data);
-                setUsername(user.username);
-                const userToSend = username;
-                const requestBody = JSON.stringify({id, userToSend, birthday});
+                const requestBody = JSON.stringify({id, username, birthday});
                 await api.put('/users/bday/'+id, requestBody);
 
                 // Update successfully worked --> navigate to the route /profile
