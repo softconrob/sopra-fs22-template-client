@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
@@ -45,8 +45,6 @@ const Profile = () => {
             alert("Can only Edit your own profile");
         }
     }
-
-
 
 
 
@@ -127,6 +125,10 @@ const Profile = () => {
                 Visiting User Profile:
             </p>
             {content}
+
+
+
+
         </BaseContainer>
     );
 }
@@ -134,4 +136,3 @@ const Profile = () => {
 
 
 export default Profile;
-
