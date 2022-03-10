@@ -45,6 +45,7 @@ const Edit = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
     const {id} = useParams();
+    const [user, setUser] = useState(null);
     const [username, setUsername] = useState(null);
     const [birthday, setBirthday] = useState(null);
 
@@ -53,7 +54,6 @@ const Edit = () => {
     // keep its value throughout render cycles.
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
-    const [users, setUsers] = useState(null);
 
     const doUpdateUsername = async () => {
         if (localStorage.getItem('id') === id) {
@@ -71,10 +71,16 @@ const Edit = () => {
     };
 
     const doUpdateBirthday = async () => {
+
         if (localStorage.getItem('id') === id) {
             try {
-                const requestBody = JSON.stringify({id, birthday});
-                await api.put('/users/'+id, requestBody);
+                const response = await api.get('/users/'+id);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                setUser(response.data);
+                setUsername(user.username);
+                const userToSend = username;
+                const requestBody = JSON.stringify({id, userToSend, birthday});
+                await api.put('/users/bday/'+id, requestBody);
 
                 // Update successfully worked --> navigate to the route /profile
                 history.push(`/game/profile/`+id);
