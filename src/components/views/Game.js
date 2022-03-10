@@ -10,8 +10,8 @@ import User from "../../models/User";
 
 const Player = ({user}) => (
   <div className="player container">
-    <div className="player username">{user.username}</div>
-      <div className="player id"><Link className="linkStyle" to={`profile/${user.id}`}>{user.id}</Link></div>
+    <div className="player username"><Link className="linkStyle" to={`profile/${user.id}`}>{user.username}</Link></div>
+
 <div className="player id">id: {user.id} </div>
   </div>
 );

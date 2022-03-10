@@ -114,7 +114,7 @@ const Edit = () => {
         if (localStorage.getItem('id') === id) {
             try {
                 const requestBody = JSON.stringify({id, username, birthday});
-                await api.put('/users/'+id, requestBody);
+                await api.put('/users/username/'+id, requestBody);
 
                 // Update successfully worked --> navigate to the route /profile
                 history.push(`/game/profile/`+id);
