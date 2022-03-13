@@ -13,7 +13,7 @@ const Player = ({user}, {online_status = user.logged_in.toString()}) => (
         <div className="player username">{user.username}</div>
         <div className="player logged_in">ONLINE: {online_status}</div>
         <div className="player creation_date">Creation Date: {user.creation_date}</div>
-        <div className="player username">Birthday: {user.birthday}</div>
+        <div className="player birthday">Birthday: {user.birthday}</div>
     </div>
 );
 
