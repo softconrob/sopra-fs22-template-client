@@ -33,8 +33,11 @@ const Game = () => {
   const [users, setUsers] = useState(null);
 
   const logout = async () => {
-      try{ const response = api.put('/users/'+localStorage.getItem("id")+"/logout");
-      }
+      try { await api.put('/users/'+localStorage.getItem("id")+"/logout");
+          localStorage.removeItem('token');
+          localStorage.removeItem('id');
+          history.push('/login');}
+
 
       catch (error) {
           alert(`Something went wrong during the logout: \n${handleError(error)}`);
