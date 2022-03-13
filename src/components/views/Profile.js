@@ -11,8 +11,8 @@ import User from "../../models/User";
 const Player = ({user}, {online_status = user.logged_in.toString()}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
-        <div className="player status">ONLINE: {online_status}</div>
-        <div className="player creation date">Creation Date: {user.creation_date}</div>
+        <div className="player logged_in">ONLINE: {online_status}</div>
+        <div className="player creation_date">Creation Date: {user.creation_date}</div>
         <div className="player username">Birthday: {user.birthday}</div>
     </div>
 );
